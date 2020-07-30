@@ -32,16 +32,18 @@ console.log(data);
 //data for each UFO sighting.
 
 //create loop and append table data
-data.forEach(ufodata => {
-    console.log(ufodata);
+data.forEach(data => {
+    console.log(data);
     var row = tbody.append("tr");
-    //var tRow = tbody.append("tr");
+    //varcolum=tbodu.append("td")
 
     //add second loop?
     //entries(ufodata).forEach(([key,value]) +>)
-    Object.entries(ufodata).forEach(([key,value]) => {
+    Object.entries(data).forEach(([key,value]) => {
         console.log(key,value);
         var column = row.append("td");
+        console.log(row);
+        console.log(column);
         column.text(value);
         //var tData = tRow.append("td");
         //tData.text(value);
@@ -49,7 +51,6 @@ data.forEach(ufodata => {
 });
 
 //Second try here
-
 var button= d3.select("#filter-btn");
 var form = d3.select("#form");
 
@@ -58,62 +59,58 @@ form.on("submit", runEnter);
 
 function runEnter(){
     d3.event.preventDefault();
-    var inputElement = d3.select("#datetime");
-    var inputValue = inputElement.property("value");
+    var inputDate = d3.select("#datetime");
+    var inputValue = inputDate.property("value");
 
     console.log(inputValue);
-    console.log(tableData);
+    console.log(inputDate);
 
-    var filteredData = tableData.filter(tableData => tableData.datetime === inputValue);
+    var filteredData = tableData.filter(tableData => tableData.datetime == inputValue);
     console.log(filteredData);
     list.html(""); 
+};
+//create dropdown for button, html includes the choices
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+};
 
+//Loop for table again and display table
+inputTypeArray.forEach((date3) => {
+    Object.entries(date3).forEach(([key,value]) => {
+        var cell = row.append("td");
+        cell.text(value);
+    });
+});   
 
-
-}
+//renderTable();
 
 
 
 //Using Button, add new data for each UFO sighting section
 //reference buttons and target
 //var submitButton = d3.select("#filter-btn-date");
-var button= d3.select("#filter-btn");
+//var button= d3.select("#filter-btn");
 //var inputField =d3.select("#input-field")
 
-function handleClick() {
-    console.log("A button was clicked!");
-    console.log(d3.event.target);
-}
 //submitButton
-button.on("Filter Table", handleClick) {
+//button.on("Filter Table", handleClick) {
     //additional code to prevent error in refresh
 
     //tbody.html("");
-    d3.event.preventDefault();
-
-
-    //logs of what has occured
-    console.log("Hi, a button was clicked!"); 
-    //see the object that dispatched the event
-    console.log(d3.event.target);
-
-    //select inputfield(s) and element(s)
-    var inputField = d3.select("#datetime");
-    var inputElement = inputField.property("value");
-    console.log(inputElement);
+    //d3.event.preventDefault();
+    //select inputfields
+    //var inputField = d3.select("#datetime");
+    //var inputElement = inputField.property("value");
     //filter
-    var inputTypeArray = data.filter(one => one.datetime === inputElement);
-    console.log(inputTypeArray);
+    //var inputTypeArray = data.filter(one => one.datetime === inputElement);
+    //console.log(inputTypeArray);
 
-//appending again
-    inputTypeArray.forEach((selection) => {
-        var row = tbody.append("tr");
-        console.log(row);
-        //below "object" becomes the targetet array (element)
-        Object.entries(selection).forEach(([key,value]) => {
-            var cell = row.append("td");
-            cell.text(value);
-            console.log(cell);
-        });
-    });      
-});
+//Loop for table again
+    //inputTypeArray.forEach((selection) => {
+        //var row = tbody.append("tr");
+        //console.log(row);
+        //Object.entries(selection).forEach(([key,value]) => {
+            //var cell = row.append("td");
+        //});
+    //});      
+//});
